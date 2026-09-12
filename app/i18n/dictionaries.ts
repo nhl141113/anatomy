@@ -4,6 +4,7 @@ import { defaultLocale } from "./config";
 /** Explicit maps keep each locale in its own chunk while staying statically
  *  analysable by both build pipelines (next build and vinext/Vite). */
 const uiLoaders: Record<string, () => Promise<UiDictionary>> = {
+  vi: () => import("./ui/vi").then((m) => m.ui),
   en: () => import("./ui/en").then((m) => m.ui),
   es: () => import("./ui/es").then((m) => m.ui),
   hi: () => import("./ui/hi").then((m) => m.ui),
@@ -19,6 +20,7 @@ const uiLoaders: Record<string, () => Promise<UiDictionary>> = {
 };
 
 const organLoaders: Record<string, () => Promise<OrganContentDictionary>> = {
+  vi: () => import("./organs/vi").then((m) => m.organs),
   en: () => import("./organs/en").then((m) => m.organs),
   es: () => import("./organs/es").then((m) => m.organs),
   hi: () => import("./organs/hi").then((m) => m.organs),
@@ -34,7 +36,13 @@ const organLoaders: Record<string, () => Promise<OrganContentDictionary>> = {
 };
 
 export async function getDictionary(locale: string): Promise<Dictionary> {
-  const ui = await (uiLoaders[locale] ?? uiLoaders[defaultLocale])();
-  const organs = await (organLoaders[locale] ?? organLoaders[defaultLocale])();
+  const getUi = uiLoaders[locale] ?? uiLoaders[defaultLocale];
+  const getOrgans = organLoaders[locale] ?? organLoaders[defaultLocale];
+
+  if (!getUi || !getOrgans) {
+    throw new Error(`Missing loader for locale "${locale}" or default locale "${defaultLocale}"`);
+  }
+
+  const [ui, organs] = await Promise.all([getUi(), getOrgans()]);
   return { ui, organs };
 }
