@@ -23,7 +23,7 @@ export const locales: LocaleConfig[] = [
   { code: "ar", nativeName: "العربية",     englishName: "Arabic",     country: "Egypt",         dir: "rtl", script: "arabic",     intl: "ar_EG" },
   { code: "pt", nativeName: "Português",  englishName: "Portuguese", country: "Brazil",        dir: "ltr", script: "latin",      intl: "pt_BR" },
   { code: "fr", nativeName: "Français",  englishName: "French",     country: "France",        dir: "ltr", script: "latin",      intl: "fr_FR" },
-  { code: "de", nativeName: "Deutsch",   textName: "German",     country: "Germany",       dir: "ltr", script: "latin",      intl: "de_DE" },
+  { code: "de", nativeName: "Deutsch",   englishName: "German",     country: "Germany",       dir: "ltr", script: "latin",      intl: "de_DE" }, // Đã sửa tại đây thành englishName
   { code: "ja", nativeName: "日本語",      englishName: "Japanese",   country: "Japan",         dir: "ltr", script: "jp",         intl: "ja_JP" },
   { code: "ru", nativeName: "Русский",   englishName: "Russian",    country: "Russia",        dir: "ltr", script: "cyrillic",   intl: "ru_RU" },
   { code: "id", nativeName: "Indonesia",  englishName: "Indonesian", country: "Indonesia",    dir: "ltr", script: "latin",      intl: "id_ID" },
