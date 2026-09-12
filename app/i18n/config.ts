@@ -15,21 +15,23 @@ export type LocaleConfig = {
 };
 
 export const locales: LocaleConfig[] = [
-  { code: "en", nativeName: "English",  englishName: "English",    country: "United States", dir: "ltr", script: "latin",      intl: "en_US" },
-  { code: "es", nativeName: "Español",  englishName: "Spanish",    country: "Spain",         dir: "ltr", script: "latin",      intl: "es_ES" },
-  { code: "hi", nativeName: "हिन्दी",     englishName: "Hindi",      country: "India",         dir: "ltr", script: "devanagari", intl: "hi_IN" },
-  { code: "zh", nativeName: "中文",      englishName: "Chinese",    country: "China",         dir: "ltr", script: "sc",         intl: "zh_CN" },
-  { code: "ar", nativeName: "العربية",    englishName: "Arabic",     country: "Egypt",         dir: "rtl", script: "arabic",     intl: "ar_EG" },
-  { code: "pt", nativeName: "Português", englishName: "Portuguese", country: "Brazil",        dir: "ltr", script: "latin",      intl: "pt_BR" },
-  { code: "fr", nativeName: "Français", englishName: "French",     country: "France",        dir: "ltr", script: "latin",      intl: "fr_FR" },
-  { code: "de", nativeName: "Deutsch",  englishName: "German",     country: "Germany",       dir: "ltr", script: "latin",      intl: "de_DE" },
-  { code: "ja", nativeName: "日本語",     englishName: "Japanese",   country: "Japan",         dir: "ltr", script: "jp",         intl: "ja_JP" },
-  { code: "ru", nativeName: "Русский",  englishName: "Russian",    country: "Russia",        dir: "ltr", script: "cyrillic",   intl: "ru_RU" },
-  { code: "id", nativeName: "Indonesia", englishName: "Indonesian", country: "Indonesia",    dir: "ltr", script: "latin",      intl: "id_ID" },
-  { code: "ko", nativeName: "한국어",     englishName: "Korean",     country: "South Korea",   dir: "ltr", script: "kr",         intl: "ko_KR" },
+  { code: "vi", nativeName: "Tiếng Việt", englishName: "Vietnamese", country: "Vietnam",       dir: "ltr", script: "latin",      intl: "vi_VN" },
+  { code: "en", nativeName: "English",   englishName: "English",    country: "United States", dir: "ltr", script: "latin",      intl: "en_US" },
+  { code: "es", nativeName: "Español",   englishName: "Spanish",    country: "Spain",         dir: "ltr", script: "latin",      intl: "es_ES" },
+  { code: "hi", nativeName: "हिन्दी",      englishName: "Hindi",      country: "India",         dir: "ltr", script: "devanagari", intl: "hi_IN" },
+  { code: "zh", nativeName: "中文",       englishName: "Chinese",    country: "China",         dir: "ltr", script: "sc",         intl: "zh_CN" },
+  { code: "ar", nativeName: "العربية",     englishName: "Arabic",     country: "Egypt",         dir: "rtl", script: "arabic",     intl: "ar_EG" },
+  { code: "pt", nativeName: "Português",  englishName: "Portuguese", country: "Brazil",        dir: "ltr", script: "latin",      intl: "pt_BR" },
+  { code: "fr", nativeName: "Français",  englishName: "French",     country: "France",        dir: "ltr", script: "latin",      intl: "fr_FR" },
+  { code: "de", nativeName: "Deutsch",   textName: "German",     country: "Germany",       dir: "ltr", script: "latin",      intl: "de_DE" },
+  { code: "ja", nativeName: "日本語",      englishName: "Japanese",   country: "Japan",         dir: "ltr", script: "jp",         intl: "ja_JP" },
+  { code: "ru", nativeName: "Русский",   englishName: "Russian",    country: "Russia",        dir: "ltr", script: "cyrillic",   intl: "ru_RU" },
+  { code: "id", nativeName: "Indonesia",  englishName: "Indonesian", country: "Indonesia",    dir: "ltr", script: "latin",      intl: "id_ID" },
+  { code: "ko", nativeName: "한국어",      englishName: "Korean",     country: "South Korea",   dir: "ltr", script: "kr",         intl: "ko_KR" },
 ];
 
-export const defaultLocale = "en";
+// Thay đổi ngôn ngữ mặc định sang tiếng Việt
+export const defaultLocale = "vi"; 
 export const localeCodes = locales.map((locale) => locale.code);
 
 export function getLocale(code: string): LocaleConfig {
