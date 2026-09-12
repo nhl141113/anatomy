@@ -1,8 +1,6 @@
 import type { Dictionary, OrganContentDictionary, UiDictionary } from "./types";
 import { defaultLocale } from "./config";
 
-/** Explicit maps keep each locale in its own chunk while staying statically
- *  analysable by both build pipelines (next build and vinext/Vite). */
 const uiLoaders: Record<string, () => Promise<UiDictionary>> = {
   vi: () => import("./ui/vi").then((m) => m.ui),
   en: () => import("./ui/en").then((m) => m.ui),
@@ -36,13 +34,10 @@ const organLoaders: Record<string, () => Promise<OrganContentDictionary>> = {
 };
 
 export async function getDictionary(locale: string): Promise<Dictionary> {
-  const getUi = uiLoaders[locale] ?? uiLoaders[defaultLocale];
-  const getOrgans = organLoaders[locale] ?? organLoaders[defaultLocale];
+  // Ưu tiên locale hiện tại -> defaultLocale ("vi") -> fallback an toàn tuyệt đối về "en"
+  const loadUi = uiLoaders[locale] ?? uiLoaders[defaultLocale] ?? uiLoaders.en;
+  const loadOrgans = organLoaders[locale] ?? organLoaders[defaultLocale] ?? organLoaders.en;
 
-  if (!getUi || !getOrgans) {
-    throw new Error(`Missing loader for locale "${locale}" or default locale "${defaultLocale}"`);
-  }
-
-  const [ui, organs] = await Promise.all([getUi(), getOrgans()]);
+  const [ui, organs] = await Promise.all([loadUi(), loadOrgans()]);
   return { ui, organs };
 }
